@@ -8,6 +8,7 @@ import { BalanceRepository } from '../repositories/balance-repository'
 import { Balance } from '@/domain/wallet/enterprise/entities/balance'
 import { validateCnpj } from '../validation/cnpj-validator'
 import { validateCpf } from '../validation/cpf-validator'
+import { Injectable } from '@nestjs/common'
 
 interface RegisterClientUseCaseRequest {
   name: string
@@ -29,6 +30,7 @@ const documentValidation = {
   individual: (value: string) => validateCpf(value),
 }
 
+@Injectable()
 export class RegisterClientUseCase {
   constructor(
     private clientRepo: ClientRepository,

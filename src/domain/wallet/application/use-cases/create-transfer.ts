@@ -9,6 +9,7 @@ import { UnauthorizedTransactionError } from '../errors/unauthorized-transaction
 import { ResourceNotFoundError } from '@/core/errors/errors/resource-not-found-error'
 import { InsufficientBalanceError } from '../errors/insufficient-balance'
 import { TransactionValidator } from '../validation/transaction-validator'
+import { Injectable } from '@nestjs/common'
 
 interface CreateTransferUseCaseRequest {
   amount: number
@@ -27,6 +28,7 @@ type CreateTransferUseCaseResponse = Either<
   }
 >
 
+@Injectable()
 export class CreateTransferUseCase {
   constructor(
     private transferRepo: TransferRepository,
