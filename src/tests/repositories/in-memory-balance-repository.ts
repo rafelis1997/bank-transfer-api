@@ -1,5 +1,5 @@
-import { BalanceRepository } from '@/domain/application/repositories/balance-repository'
-import { Balance } from '@/domain/enterprise/entities/balance'
+import { BalanceRepository } from '@/domain/wallet/application/repositories/balance-repository'
+import { Balance } from '@/domain/wallet/enterprise/entities/balance'
 
 export class InMemoryBalanceRepository implements BalanceRepository {
   public items: Balance[] = []

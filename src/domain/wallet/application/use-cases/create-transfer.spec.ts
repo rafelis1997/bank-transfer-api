@@ -7,7 +7,7 @@ import { makeClient } from '@/tests/factories/make-client'
 import { makeBalance } from '@/tests/factories/make-balance'
 import { ClientDoesNotExistsError } from '../errors/client-does-not-exists'
 import { InsufficientBalanceError } from '../errors/insufficient-balance'
-import { ClientType } from '@/domain/enterprise/entities/common'
+import { ClientType } from '@/domain/wallet/enterprise/entities/common'
 import { UnauthorizedTransactionError } from '../errors/unauthorized-transaction'
 
 let inMemoryBalanceRepository: InMemoryBalanceRepository

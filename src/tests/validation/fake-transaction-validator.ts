@@ -1,5 +1,5 @@
-import { TransactionValidator } from '@/domain/application/validation/transaction-validator'
-import { Transfer } from '@/domain/enterprise/entities/transfer'
+import { TransactionValidator } from '@/domain/wallet/application/validation/transaction-validator'
+import { Transfer } from '@/domain/wallet/enterprise/entities/transfer'
 
 export class FakeTransactionValidator extends TransactionValidator {
   public isValid: boolean = true

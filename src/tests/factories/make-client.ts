@@ -4,7 +4,7 @@ import {
   ClientType,
   Common,
   CommonUserProps,
-} from '../../domain/enterprise/entities/common'
+} from '../../domain/wallet/enterprise/entities/common'
 
 export function makeClient(
   override: Partial<CommonUserProps> = {},

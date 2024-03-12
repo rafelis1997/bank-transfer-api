@@ -1,5 +1,5 @@
-import { TransferRepository } from '@/domain/application/repositories/transfer-repository'
-import { Transfer } from '@/domain/enterprise/entities/transfer'
+import { TransferRepository } from '@/domain/wallet/application/repositories/transfer-repository'
+import { Transfer } from '@/domain/wallet/enterprise/entities/transfer'
 
 export class InMemoryTransferRepository extends TransferRepository {
   public items: Transfer[] = []

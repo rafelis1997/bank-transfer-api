@@ -1,4 +1,7 @@
-import { Balance, BalanceProps } from '@/domain/enterprise/entities/balance'
+import {
+  Balance,
+  BalanceProps,
+} from '@/domain/wallet/enterprise/entities/balance'
 import { UniqueEntityID } from '../../core/entities/unique-entity-id'
 
 export function makeBalance(

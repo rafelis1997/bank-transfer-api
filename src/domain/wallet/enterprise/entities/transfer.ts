@@ -1,5 +1,6 @@
 import { SortableEntityID } from '@/core/entities/sortable-entity-id'
-import { Entity } from '../../../core/entities/entity'
+import { AggregateRoot } from '@/core/entities/aggregate-root'
+import { NewTransferEvent } from '../events/new-transfer-event'
 
 export interface TransferProps {
   senderId: string
@@ -10,7 +11,7 @@ export interface TransferProps {
   updatedAt?: Date | null
 }
 
-export class Transfer extends Entity<TransferProps> {
+export class Transfer extends AggregateRoot<TransferProps> {
   get senderId() {
     return this.props.senderId
   }
@@ -52,6 +53,8 @@ export class Transfer extends Entity<TransferProps> {
       },
       id ?? new SortableEntityID(),
     )
+
+    transfer.addDomainEvent(new NewTransferEvent(transfer))
 
     return transfer
   }

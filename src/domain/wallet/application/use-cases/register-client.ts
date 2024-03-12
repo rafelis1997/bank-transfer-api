@@ -5,7 +5,7 @@ import { ClientAlreadyExistsError } from '../errors/client-already-exists-error'
 import { ClientRepository } from '../repositories/clients-repository'
 import { DocumentIsInvalidError } from '../errors/document-is-invalid'
 import { BalanceRepository } from '../repositories/balance-repository'
-import { Balance } from '@/domain/enterprise/entities/balance'
+import { Balance } from '@/domain/wallet/enterprise/entities/balance'
 import { validateCnpj } from '../validation/cnpj-validator'
 import { validateCpf } from '../validation/cpf-validator'
 

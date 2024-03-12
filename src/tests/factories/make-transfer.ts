@@ -1,6 +1,9 @@
 import { SortableEntityID } from '@/core/entities/sortable-entity-id'
 import { UniqueEntityID } from '../../core/entities/unique-entity-id'
-import { Transfer, TransferProps } from '@/domain/enterprise/entities/transfer'
+import {
+  Transfer,
+  TransferProps,
+} from '@/domain/wallet/enterprise/entities/transfer'
 
 export function makeTransfer(
   override: Partial<TransferProps> = {},

@@ -1,6 +1,6 @@
 import { Optional } from '@/core/types/optional'
-import { Entity } from '../../../core/entities/entity'
-import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
+import { UniqueEntityID } from '../../../../core/entities/unique-entity-id'
+import { AggregateRoot } from '@/core/entities/aggregate-root'
 
 export interface BalanceProps {
   holderId: UniqueEntityID
@@ -10,7 +10,7 @@ export interface BalanceProps {
   updatedAt?: Date | null
 }
 
-export class Balance extends Entity<BalanceProps> {
+export class Balance extends AggregateRoot<BalanceProps> {
   get holderId() {
     return this.props.holderId
   }
@@ -21,6 +21,7 @@ export class Balance extends Entity<BalanceProps> {
 
   set amount(value: number) {
     this.props.amount = value
+    this.touch()
   }
 
   get lastTransaction() {
@@ -29,6 +30,7 @@ export class Balance extends Entity<BalanceProps> {
 
   set lastTransaction(value: string | null) {
     this.props.lastTransaction = value
+    this.touch()
   }
 
   get createdAt() {
@@ -37,6 +39,10 @@ export class Balance extends Entity<BalanceProps> {
 
   get updatedAt() {
     return this.props.updatedAt
+  }
+
+  private touch() {
+    this.props.updatedAt = new Date()
   }
 
   static create(

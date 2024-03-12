@@ -4,7 +4,7 @@ import { RegisterClientUseCase } from './register-client'
 import { ClientAlreadyExistsError } from '../errors/client-already-exists-error'
 import { InMemoryBalanceRepository } from '@/tests/repositories/in-memory-balance-repository'
 import { DocumentIsInvalidError } from '../errors/document-is-invalid'
-import { ClientType } from '@/domain/enterprise/entities/common'
+import { ClientType } from '@/domain/wallet/enterprise/entities/common'
 
 let inMemoryClientRepository: InMemoryClientRepository
 let inMemoryBalanceRepository: InMemoryBalanceRepository

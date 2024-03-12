@@ -1,5 +1,5 @@
-import { ClientRepository } from '../../domain/application/repositories/clients-repository'
-import { Common } from '../../domain/enterprise/entities/common'
+import { ClientRepository } from '@/domain/wallet/application/repositories/clients-repository'
+import { Common } from '@/domain/wallet/enterprise/entities/common'
 
 export class InMemoryClientRepository implements ClientRepository {
   public items: Common[] = []

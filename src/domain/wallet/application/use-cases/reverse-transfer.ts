@@ -1,4 +1,4 @@
-import { Transfer } from '@/domain/enterprise/entities/transfer'
+import { Transfer } from '@/domain/wallet/enterprise/entities/transfer'
 import { BalanceRepository } from '../repositories/balance-repository'
 import { TransferRepository } from '../repositories/transfer-repository'
 import { ClientRepository } from '../repositories/clients-repository'
