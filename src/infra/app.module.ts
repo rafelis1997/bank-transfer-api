@@ -3,6 +3,7 @@ import { envSchema } from './env/env'
 import { ConfigModule } from '@nestjs/config'
 import { EnvModule } from './env/env.module'
 import { EnvService } from './env/env.service'
+import { EventsModule } from './events/events.module'
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { EnvService } from './env/env.service'
       isGlobal: true,
     }),
     EnvModule,
+    EventsModule,
   ],
   providers: [EnvService],
 })
