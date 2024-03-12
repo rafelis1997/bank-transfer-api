@@ -1,3 +1,4 @@
+import { DomainEvents } from '@/core/events/domain-events'
 import { TransferRepository } from '@/domain/wallet/application/repositories/transfer-repository'
 import { Transfer } from '@/domain/wallet/enterprise/entities/transfer'
 
@@ -28,5 +29,7 @@ export class InMemoryTransferRepository extends TransferRepository {
 
   async create(transfer: Transfer): Promise<void> {
     this.items.push(transfer)
+
+    DomainEvents.dispatchEventsForAggregate(transfer.id)
   }
 }

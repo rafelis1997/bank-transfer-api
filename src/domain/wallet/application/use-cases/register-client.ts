@@ -1,4 +1,4 @@
-import { left, right, Either } from '../../../core/either'
+import { left, right, Either } from '@/core/either'
 import { ClientType, Common } from '../../enterprise/entities/common'
 import { HashGenerator } from '../cryptography/hash-generator'
 import { ClientAlreadyExistsError } from '../errors/client-already-exists-error'
