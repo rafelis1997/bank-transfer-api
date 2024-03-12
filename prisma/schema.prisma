@@ -24,8 +24,9 @@ model Client {
   updatedAt DateTime? @updatedAt @map("updated_at")
 
   balance           Balance[]
-  receivedTransfers Transfer[] @relation("receiver")
-  sentTransfers     Transfer[] @relation("sender")
+  receivedTransfers Transfer[]     @relation("receiver")
+  sentTransfers     Transfer[]     @relation("sender")
+  notifications     Notification[]
 
   @@map("clients")
 }
@@ -41,6 +42,8 @@ model Balance {
 
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime? @updatedAt @map("updated_at")
+
+  @@map("balances")
 }
 
 model Transfer {
@@ -56,4 +59,19 @@ model Transfer {
 
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime? @updatedAt @map("updated_at")
+
+  @@map("transfers")
+}
+
+model Notification {
+  id          String    @id @default(uuid())
+  recipientId String    @map("recipient_id")
+  title       String
+  content     String
+  readAt      DateTime? @map("read_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  recipient Client @relation(fields: [recipientId], references: [id])
+
+  @@map("notifications")
 }
