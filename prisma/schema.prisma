@@ -32,10 +32,10 @@ model Client {
 }
 
 model Balance {
-  id         String @id @default(uuid())
+  id         String  @id @default(uuid())
   amount     Int
-  transferId String @unique
-  holderId   String
+  transferId String? @unique
+  holderId   String  @unique
 
   lastTransaction Transfer? @relation(fields: [transferId], references: [id])
   holder          Client    @relation(fields: [holderId], references: [id])
