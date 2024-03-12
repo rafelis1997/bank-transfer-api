@@ -79,7 +79,7 @@ export class RegisterClientUseCase {
 
     await this.clientRepo.create(client)
 
-    const balance = await Balance.create({
+    const balance = Balance.create({
       amount: 0,
       holderId: client.id,
       lastTransaction: null,

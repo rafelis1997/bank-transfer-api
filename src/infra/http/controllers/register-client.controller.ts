@@ -24,7 +24,7 @@ const registerClientBodySchema = z.object({
 type RegisterClientBodySchema = z.infer<typeof registerClientBodySchema>
 
 @Controller({
-  path: '/client',
+  path: '/clients',
 })
 export class RegisterClientController {
   constructor(private registerClient: RegisterClientUseCase) {}
