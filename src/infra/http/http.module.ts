@@ -1,12 +1,15 @@
 import { Module } from '@nestjs/common'
 import { RegisterClientController } from './controllers/register-client.controller'
-import { DatabaseModule } from '../database/databse.module'
+import { DatabaseModule } from '../database/database.module'
 import { CryptoModule } from '../cryptography/crypto.module'
 import { RegisterClientUseCase } from '@/domain/wallet/application/use-cases/register-client'
+import { CreateTransferController } from './controllers/create-transfer.controller'
+import { CreateTransferUseCase } from '@/domain/wallet/application/use-cases/create-transfer'
+import { ValidationModule } from '../validation/validation.module'
 
 @Module({
-  imports: [DatabaseModule, CryptoModule],
-  controllers: [RegisterClientController],
-  providers: [RegisterClientUseCase],
+  imports: [DatabaseModule, CryptoModule, ValidationModule],
+  controllers: [RegisterClientController, CreateTransferController],
+  providers: [RegisterClientUseCase, CreateTransferUseCase],
 })
 export class HttpModule {}
