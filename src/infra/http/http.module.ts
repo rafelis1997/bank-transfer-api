@@ -6,10 +6,20 @@ import { RegisterClientUseCase } from '@/domain/wallet/application/use-cases/reg
 import { CreateTransferController } from './controllers/create-transfer.controller'
 import { CreateTransferUseCase } from '@/domain/wallet/application/use-cases/create-transfer'
 import { ValidationModule } from '../validation/validation.module'
+import { ReverseTransferUseCase } from '@/domain/wallet/application/use-cases/reverse-transfer'
+import { ReverseTransferController } from './controllers/reverse-transfer.controller'
 
 @Module({
   imports: [DatabaseModule, CryptoModule, ValidationModule],
-  controllers: [RegisterClientController, CreateTransferController],
-  providers: [RegisterClientUseCase, CreateTransferUseCase],
+  controllers: [
+    RegisterClientController,
+    CreateTransferController,
+    ReverseTransferController,
+  ],
+  providers: [
+    RegisterClientUseCase,
+    CreateTransferUseCase,
+    ReverseTransferUseCase,
+  ],
 })
 export class HttpModule {}
