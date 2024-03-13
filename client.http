@@ -5,11 +5,32 @@ POST {{baseUrl}}/clients
 Content-Type: application/json
 
 {
-  "name": "John Doe 2",
-  "email": "john.doe2@test.com",
-  "document": "74974644009",
+  "name": "John Doe",
+  "email": "john.doe@test.com",
+  "document": "39920111007",
   "password": "123456"
 }
 
 ###
 
+# @name create_transfer
+POST {{baseUrl}}/transfers
+Content-Type: application/json
+
+{
+  "senderId": "49467930-3798-4c61-8a6c-d8bf9ec5c6b0",
+  "recipientId": "d71f7b55-c301-4e31-bf5f-4f698e58e7e5",
+  "amount": 100,
+  "description": "compra uma chocolate"
+}
+
+###
+# @name reverse_transfer
+POST {{baseUrl}}/transfers/reverse
+Content-Type: application/json
+
+{
+  "id": "01HRTJN25WEBQW67H77ZF39TKD"
+}
+
+###

@@ -9,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -34,11 +34,11 @@ model Client {
 model Balance {
   id         String  @id @default(uuid())
   amount     Int
-  transferId String? @unique
+  transferId String?
   holderId   String  @unique
 
-  lastTransaction Transfer? @relation(fields: [transferId], references: [id])
-  holder          Client    @relation(fields: [holderId], references: [id])
+  lastTransaction Transfer[]
+  holder          Client     @relation(fields: [holderId], references: [id])
 
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime? @updatedAt @map("updated_at")
@@ -53,9 +53,9 @@ model Transfer {
   amount      Int
   description String?
 
-  sender   Client   @relation("sender", fields: [senderId], references: [id])
-  receiver Client   @relation("receiver", fields: [receiverId], references: [id])
-  balance  Balance?
+  sender   Client    @relation("sender", fields: [senderId], references: [id])
+  receiver Client    @relation("receiver", fields: [receiverId], references: [id])
+  balance  Balance[]
 
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime? @updatedAt @map("updated_at")
