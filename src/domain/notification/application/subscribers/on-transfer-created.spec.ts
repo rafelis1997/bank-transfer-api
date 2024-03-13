@@ -13,11 +13,13 @@ import { makeClient } from '@/tests/factories/make-client'
 import { makeBalance } from '@/tests/factories/make-balance'
 import { makeTransfer } from '@/tests/factories/make-transfer'
 import { waitFor } from '@/tests/utils/wait-for'
+import { SendEmailMock } from '@/tests/notification/send-email-mock'
 
 let inMemoryClientRepository: InMemoryClientRepository
 let inMemoryBalanceRepository: InMemoryBalanceRepository
 let inMemoryTransferRepository: InMemoryTransferRepository
 let inMemoryNotificationRepository: InMemoryNotificationRepository
+let sendEmailMock: SendEmailMock
 let sendNotificationUseCase: SendNotificationUseCase
 
 let sendNotificationExecuteSpy: MockInstance<
@@ -31,8 +33,10 @@ describe('On transfer created', () => {
     inMemoryBalanceRepository = new InMemoryBalanceRepository()
     inMemoryTransferRepository = new InMemoryTransferRepository()
     inMemoryNotificationRepository = new InMemoryNotificationRepository()
+    sendEmailMock = new SendEmailMock()
     sendNotificationUseCase = new SendNotificationUseCase(
       inMemoryNotificationRepository,
+      sendEmailMock,
     )
 
     sendNotificationExecuteSpy = vi.spyOn(sendNotificationUseCase, 'execute')

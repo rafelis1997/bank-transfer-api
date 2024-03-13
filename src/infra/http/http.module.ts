@@ -8,9 +8,15 @@ import { CreateTransferUseCase } from '@/domain/wallet/application/use-cases/cre
 import { ValidationModule } from '../validation/validation.module'
 import { ReverseTransferUseCase } from '@/domain/wallet/application/use-cases/reverse-transfer'
 import { ReverseTransferController } from './controllers/reverse-transfer.controller'
+import { NotificationsModule } from '../notifications/notification.module'
 
 @Module({
-  imports: [DatabaseModule, CryptoModule, ValidationModule],
+  imports: [
+    DatabaseModule,
+    CryptoModule,
+    ValidationModule,
+    NotificationsModule,
+  ],
   controllers: [
     RegisterClientController,
     CreateTransferController,

@@ -4,7 +4,9 @@ import { DomainEvents } from '@/core/events/domain-events'
 import { NewTransferEvent } from '@/domain/wallet/enterprise/events/new-transfer-event'
 import { ClientRepository } from '@/domain/wallet/application/repositories/clients-repository'
 import { MoneyFormater } from '@/utils/money-formater'
+import { Injectable } from '@nestjs/common'
 
+@Injectable()
 export class OnTransferCreated implements EventHandler {
   constructor(
     private clientRepo: ClientRepository,
@@ -26,16 +28,22 @@ export class OnTransferCreated implements EventHandler {
     const sender = await this.clientRepo.findById(senderId)
     const receiver = await this.clientRepo.findById(receiverId)
 
-    await this.sendNotification.execute({
-      title: 'Você recebeu uma transferência',
-      content: `Você recebeu uma transferência de ${sender?.name}, no valor de ${MoneyFormater(transfer.amount / 100)}`,
-      recipientId: receiverId,
-    })
+    if (receiver) {
+      await this.sendNotification.execute({
+        title: 'Você recebeu uma transferência',
+        content: `Você recebeu uma transferência de ${sender?.name}, no valor de ${MoneyFormater(transfer.amount / 100)}`,
+        recipientId: receiverId,
+        email: receiver.email,
+      })
+    }
 
-    await this.sendNotification.execute({
-      title: 'Você fez uma transferência',
-      content: `Você fez uma transferência para ${receiver?.name}, no valor de ${MoneyFormater(transfer.amount / 100)}`,
-      recipientId: senderId,
-    })
+    if (sender) {
+      await this.sendNotification.execute({
+        title: 'Você fez uma transferência',
+        content: `Você fez uma transferência para ${receiver?.name}, no valor de ${MoneyFormater(transfer.amount / 100)}`,
+        recipientId: senderId,
+        email: sender.email,
+      })
+    }
   }
 }

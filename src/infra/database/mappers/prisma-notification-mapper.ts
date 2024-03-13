@@ -9,8 +9,10 @@ export class PrismaNotificationMapper {
         content: raw.content,
         recipientId: new UniqueEntityID(raw.recipientId),
         title: raw.title,
+        email: raw.email,
         createdAt: raw.createdAt,
         readAt: raw.readAt ?? undefined,
+        sentAt: raw.sentAt ?? undefined,
       },
       new UniqueEntityID(raw.id),
     )
@@ -19,13 +21,16 @@ export class PrismaNotificationMapper {
   static toPrisma(
     notification: Notification,
   ): Prisma.NotificationUncheckedCreateInput {
+    console.log(notification)
     return {
       id: notification.id.toString(),
       content: notification.content,
       recipientId: notification.recipientId.toString(),
       title: notification.title,
+      email: notification.email,
       createdAt: notification.createdAt,
       readAt: notification.readAt,
+      sentAt: notification.sentAt,
     }
   }
 }

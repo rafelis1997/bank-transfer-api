@@ -3,6 +3,7 @@ import { Transfer } from '@/domain/wallet/enterprise/entities/transfer'
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from '../prisma/prisma.service'
 import { PrismaTransferMapper } from '../mappers/prisma-transfer-mapper'
+import { DomainEvents } from '@/core/events/domain-events'
 
 @Injectable()
 export class PrismaTransferRepository implements TransferRepository {
@@ -40,5 +41,7 @@ export class PrismaTransferRepository implements TransferRepository {
     const data = PrismaTransferMapper.toPrisma(transfer)
 
     await this.prisma.transfer.create({ data })
+
+    DomainEvents.dispatchEventsForAggregate(transfer.id)
   }
 }
