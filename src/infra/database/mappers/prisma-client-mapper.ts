@@ -1,6 +1,6 @@
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { ClientType, Common } from '@/domain/wallet/enterprise/entities/common'
-import { Client as PrismaClient, Prisma } from '@prisma/client'
+import { Client as PrismaClient, Prisma, COMPANY_TYPE } from '@prisma/client'
 
 export class PrismaClientMapper {
   static toDomain(raw: PrismaClient): Common {
@@ -23,7 +23,7 @@ export class PrismaClientMapper {
       email: client.email,
       document: client.document,
       password: client.password,
-      type: client.type,
+      type: client.type ? COMPANY_TYPE[client.type] : COMPANY_TYPE.INDIVIDUAL,
     }
   }
 }

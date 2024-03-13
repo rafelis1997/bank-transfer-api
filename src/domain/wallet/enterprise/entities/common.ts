@@ -2,8 +2,8 @@ import { Entity } from '../../../../core/entities/entity'
 import { UniqueEntityID } from '../../../../core/entities/unique-entity-id'
 
 export enum ClientType {
-  INDIVIDUAL = 'individual',
-  COMPANY = 'company',
+  COMPANY = 'COMPANY',
+  INDIVIDUAL = 'INDIVIDUAL',
 }
 
 export interface CommonUserProps {

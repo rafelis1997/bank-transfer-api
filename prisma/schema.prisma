@@ -13,15 +13,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum COMPANY_TYPE {
+  INDIVIDUAL
+  COMPANY
+}
+
 model Client {
-  id        String    @id @default(uuid())
+  id        String       @id @default(uuid())
   name      String
-  document  String    @unique
-  email     String    @unique
-  type      String    @default("individual")
+  document  String       @unique
+  email     String       @unique
+  type      COMPANY_TYPE @default(INDIVIDUAL)
   password  String
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime? @updatedAt @map("updated_at")
+  createdAt DateTime     @default(now()) @map("created_at")
+  updatedAt DateTime?    @updatedAt @map("updated_at")
 
   balance           Balance[]
   receivedTransfers Transfer[]     @relation("receiver")

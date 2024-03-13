@@ -26,8 +26,8 @@ type RegisterClientUseCaseResponse = Either<
 >
 
 const documentValidation = {
-  company: (value: string) => validateCnpj(value),
-  individual: (value: string) => validateCpf(value),
+  COMPANY: (value: string) => validateCnpj(value),
+  INDIVIDUAL: (value: string) => validateCpf(value),
 }
 
 @Injectable()
@@ -60,8 +60,7 @@ export class RegisterClientUseCase {
       return left(new ClientAlreadyExistsError(serializedDocument))
     }
 
-    const validateDocumentFn =
-      documentValidation[type as keyof typeof documentValidation]
+    const validateDocumentFn = documentValidation[type]
 
     if (!validateDocumentFn(document)) {
       return left(new DocumentIsInvalidError(serializedDocument))

@@ -35,6 +35,8 @@ export class RegisterClientController {
   async handle(@Body() body: RegisterClientBodySchema) {
     const { email, name, password, type, document } = body
 
+    console.log(type)
+
     const result = await this.registerClient.execute({
       document,
       email,
