@@ -1,6 +1,6 @@
 @baseUrl = http://localhost:3333
 
-# @name create_account
+# @name create_individual_account
 POST {{baseUrl}}/clients
 Content-Type: application/json
 
@@ -13,13 +13,27 @@ Content-Type: application/json
 
 ###
 
+# @name create_company_account
+POST {{baseUrl}}/clients
+Content-Type: application/json
+
+{
+  "name": "John Doe Corp",
+  "email": "john.doe.corp@test.com",
+  "document": "82740720000158",
+  "password": "123456",
+  "type": "COMPANY"
+}
+
+###
+
 # @name create_transfer
 POST {{baseUrl}}/transfers
 Content-Type: application/json
 
 {
-  "senderId": "49467930-3798-4c61-8a6c-d8bf9ec5c6b0",
-  "recipientId": "d71f7b55-c301-4e31-bf5f-4f698e58e7e5",
+  "senderId": "e16fa6db-f2de-44b8-bd88-f1db49e11737",
+  "recipientId": "cda43062-47b6-4a9c-ab7f-fa9bf5c9976d",
   "amount": 100,
   "description": "compra uma chocolate"
 }
