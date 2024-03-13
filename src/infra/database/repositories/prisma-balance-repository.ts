@@ -22,11 +22,13 @@ export class PrismaBalanceRepository implements BalanceRepository {
   }
 
   async save(balances: Balance[]): Promise<void> {
-    const data = balances.map((balance) =>
+    const mappedBalances = balances.map((balance) =>
       PrismaBalanceMapper.toPrisma(balance),
     )
 
-    await this.prisma.balance.updateMany({ data })
+    for (const data of mappedBalances) {
+      await this.prisma.balance.update({ where: { id: data.id }, data })
+    }
   }
 
   async create(balance: Balance): Promise<void> {
